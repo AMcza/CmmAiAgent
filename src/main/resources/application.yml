@@ -30,7 +30,7 @@ spring:
         username: cmmcat
         password: z915915915Z
 search-api:
-    api-key: "ayZFoen6gR8mAkQwyEFaihUq"
+    api-key: ""
 
 server:
     port: 8123
