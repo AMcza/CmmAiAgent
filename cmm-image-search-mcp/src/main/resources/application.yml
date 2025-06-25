@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: cmm-image-search-mcp-server
+  profiles:
+    active: stdio
+server: 8127

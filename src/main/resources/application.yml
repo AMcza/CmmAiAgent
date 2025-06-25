@@ -1,0 +1,65 @@
+spring:
+    application:
+        name: cmm-ai-agent
+    ai:
+        dashscope:
+            api-key: "sk-7572d2f22b36416fa908ac7d4bb5f14b"
+            chat:
+                options:
+                    model: qwen-plus
+        vectorstore:
+            pgvector:
+                index-type: HNSW
+                dimensions: 1536
+                distance-type: COSINE_DISTANCE
+                max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+                max-mem-table-size: 1000000000 # Optional: Maximum memory size for the in-memory table in bytes
+        mcp:
+            client:
+                enabled: true
+
+                stdio:
+                    servers-configuration: classpath:mcp-servers.json
+#                sse:
+#                    connections:
+#                        server1:
+#                            url: http://localhost:8127
+
+    datasource:
+        url: jdbc:postgresql://rm-cn-l4p4b8ccb0001imo.rwlb.rds.aliyuncs.com/cmm_ai_agent
+        username: cmmcat
+        password: z915915915Z
+search-api:
+    api-key: "ayZFoen6gR8mAkQwyEFaihUq"
+
+server:
+    port: 8123
+    servlet:
+        context-path: /api
+mybatis-plus:
+    type-handlers-package: org.example.cmmaiagent2.handler
+    global-config:
+      db-config:
+          logic-delete-field: idDelete
+          logic-delete-value: 1
+          logic-not-delete-value: 0
+# springdoc-openapi
+springdoc:
+    swagger-ui:
+        path: /swagger-ui.html
+        tags-sorter: alpha
+        operations-sorter: alpha
+    api-docs:
+        path: /v3/api-docs
+    group-configs:
+        - group: 'default'
+          paths-to-match: '/**'
+          packages-to-scan: org.example.cmmaiagent2.controller
+# knife4j
+knife4j:
+    enable: true
+    setting:
+        language: zh_cn
+logging:
+    level:
+      org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug
