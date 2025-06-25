@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 @Service
 public class ImageSearchTool {
 
-    // 替换为你的 Pexels API 密钥（需从官网申请）
-    private static final String API_KEY = "fp1vH8m50G7GMw4TobgWFiB7rHZQdbShcn3feIBTPpJlADglvUI6UeEG";
+    // 替换为你的 Pexels API 密钥
+    private static final String API_KEY = "";
 
-    // Pexels 常规搜索接口（请以文档为准）
+    // Pexels 常规搜索接口
     private static final String API_URL = "https://api.pexels.com/v1/search";
 
     @Tool(description = "search image from web")
@@ -38,11 +38,11 @@ public class ImageSearchTool {
      * @return
      */
     public List<String> searchMediumImages(String query) {
-        // 设置请求头（包含API密钥）
+        // 设置请求头
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", API_KEY);
 
-        // 设置请求参数（仅包含query，可根据文档补充page、per_page等参数）
+        // 设置请求参数
         Map<String, Object> params = new HashMap<>();
         params.put("query", query);
 
@@ -53,7 +53,7 @@ public class ImageSearchTool {
                 .execute()
                 .body();
 
-        // 解析响应JSON（假设响应结构包含"photos"数组，每个元素包含"medium"字段）
+        // 解析响应JSON
         return JSONUtil.parseObj(response)
                 .getJSONArray("photos")
                 .stream()
